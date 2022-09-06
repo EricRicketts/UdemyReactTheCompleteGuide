@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import App from '../App';
 import { sum } from '../services/sum';
+import { multiplyByTwo, repeatString } from '../services/arrowFunctions';
 
 describe('Test for Javascript review', () => {
   describe('Test Something simple', () => {
@@ -21,6 +22,14 @@ describe('Test for Javascript review', () => {
       const x = 3; 
       expect(x).toBe(3);
       expect(() => x = 4).toThrow(TypeError);
+    });
+  });
+  describe('Test arrow functions', () => {
+    test('should multiply by two', () => {
+      expect(multiplyByTwo(4)).toBe(8); 
+    }); 
+    test('should repeat a string n times', () => {
+      expect(repeatString("foo", 3)).toBe("foofoofoo"); 
     });
   });
 });
