@@ -1,9 +1,12 @@
 import { render, screen } from '@testing-library/react';
 import App from '../App';
 import { sum } from '../services/sum';
-import { multiplyByTwo, repeatString } from '../services/arrowFunctions';
+import { multiplyByTwo, repeatString, exportX } from '../services/arrowFunctions';
+import Person from '../services/person';
+import Human from '../services/human';
 
 describe('Test for Javascript review', () => {
+  let expected, results;
   describe('Test Something simple', () => {
     test('sum of 4 and 5 is 9', () => {
       expect(sum(4, 5)).toBe(9);
@@ -30,6 +33,28 @@ describe('Test for Javascript review', () => {
     }); 
     test('should repeat a string n times', () => {
       expect(repeatString("foo", 3)).toBe("foofoofoo"); 
+    });
+    test('should not be able to change an imported variable', () => {
+      expect(exportX).toBe(10); 
+      expect(() => exportX = 11).toThrow(Error);
+    });
+  });
+  describe('Test basic class syntax', () => {
+    test('Human class should have both its own getters and setters', () => {
+      expected = ['male', 'female'];
+      const firstHuman = new Human();
+      const secondHuman = new Human();
+      secondHuman.gender = "female";
+      results = [firstHuman.gender, secondHuman.gender];
+      expect(results).toEqual(expected);
+    }); 
+    test('Person class inherits getters and setters from Human class', () => {
+      expected = ['female', "Betty"]; 
+      const person = new Person();
+      person.gender = 'female';
+      person.name = 'Betty';
+      results = [person.gender, person.name];
+      expect(results).toEqual(expected);
     });
   });
 });
