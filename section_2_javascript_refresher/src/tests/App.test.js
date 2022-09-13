@@ -5,6 +5,7 @@ import { multiplyByTwo, repeatString, exportX } from '../services/arrowFunctions
 import Person from '../services/person';
 import Human from '../services/human';
 import HumanTwo from '../services/human_two';
+import PersonTwo from '../services/person_two';
 
 describe('Test for Javascript review', () => {
   let expected, results;
@@ -66,6 +67,14 @@ describe('Test for Javascript review', () => {
     secondHuman.gender = 'female';
     results = [firstHuman.gender, secondHuman.gender];
     expect(results).toEqual(expected);
+    });
+    test('should allow for inheritance in the new syntax', () => {
+      expected = ['female', "Betty"]; 
+      const person = new PersonTwo();
+      person.gender = 'female';
+      person.name = 'Betty';
+      results = [person.gender, person.name];
+      expect(results).toEqual(expected);
     });
   });
 });
