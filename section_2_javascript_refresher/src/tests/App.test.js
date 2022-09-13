@@ -4,6 +4,7 @@ import { sum } from '../services/sum';
 import { multiplyByTwo, repeatString, exportX } from '../services/arrowFunctions';
 import Person from '../services/person';
 import Human from '../services/human';
+import HumanTwo from '../services/human_two';
 
 describe('Test for Javascript review', () => {
   let expected, results;
@@ -57,5 +58,14 @@ describe('Test for Javascript review', () => {
       expect(results).toEqual(expected);
     });
   });
+  describe('Test new class syntax', () => {
+    test('should allow for getters and setters', () => {
+    expected = ['male', 'female']; 
+    const firstHuman = new HumanTwo();
+    const secondHuman = new HumanTwo();
+    secondHuman.gender = 'female';
+    results = [firstHuman.gender, secondHuman.gender];
+    expect(results).toEqual(expected);
+    });
+  });
 });
-
