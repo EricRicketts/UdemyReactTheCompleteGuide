@@ -90,5 +90,10 @@ describe('Test for Javascript review', () => {
       const secodnObject = {...firstObject, newProp: 3};
       expect(secodnObject).toEqual(expected);
     });
+    test('should filter arguments using the rest operator', () => {
+      expected = [2, 4, 6, 8];
+      const findEven = (...args) => args.filter(x => x % 2 === 0) 
+      expect(findEven(1, 2, 3, 4, 5, 6, 7, 8, 9)).toEqual(expected);
+    });
   });
 });
