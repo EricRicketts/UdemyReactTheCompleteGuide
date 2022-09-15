@@ -77,4 +77,18 @@ describe('Test for Javascript review', () => {
       expect(results).toEqual(expected);
     });
   });
+  describe('Test Rest And Spread Operators', () => {
+    test('should populate a new array with the spread operator', () => {
+      expected = [1, 2, 3, 4, 5];
+      const firstArray = [1, 2, 3]; 
+      const secondArray = [...firstArray, 4, 5];
+      expect(secondArray).toEqual(expected);
+    }); 
+    test('should populate a new object with the spread operator', () => {
+      expected = {foo: 1, bar: 2, newProp: 3}; 
+      const firstObject = {foo: 1, bar: 2};
+      const secodnObject = {...firstObject, newProp: 3};
+      expect(secodnObject).toEqual(expected);
+    });
+  });
 });
