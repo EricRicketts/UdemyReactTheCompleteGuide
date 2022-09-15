@@ -96,4 +96,27 @@ describe('Test for Javascript review', () => {
       expect(findEven(1, 2, 3, 4, 5, 6, 7, 8, 9)).toEqual(expected);
     });
   });
+  describe('Test Destructuring On Arrays and Objects', () => {
+    test('should assign variables through array destructuring', () => {
+      expected = [[1, 2], [1, 3]]; 
+      const numbers = [1, 2, 3];
+      const [num1, num2] = numbers;
+      const [num3, , num4] = numbers;
+      expect([[num1, num2], [num3, num4]]).toEqual(expected);
+    }); 
+    test('should assign variables through object destructuring', () => {
+      expected = {name: "Fred"} 
+      const {name} = {name: "Fred", age: 28};
+      expect(name).toBe("Fred");
+    });
+  });
+  describe('Test Safely Copying Objects', () => {
+    test('should create a new array when copying using the spread operator', () => {
+      const objOne = { name: "Max" } 
+      const objTwo = {...objOne};
+      objOne.name = "Manu"
+      expect(objOne).toEqual({name: "Manu"});
+      expect(objTwo).toEqual({name: "Max"});
+    }); 
+  });
 });
