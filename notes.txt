@@ -1,0 +1,86 @@
+Maximillian gave a very good overview of how React works.  When using create-react-app, there are some essential
+files at the top level which enable the application to work:
+
+1.  package.json
+2.  index.css
+3.  index.js
+4.  index.html
+5.  App.js
+
+The center of activity is index.js:
+-------------------------------------------------------------------
+import ReactDOM from 'react-dom/client';
+
+import './index.css';
+import App from './App';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
+-------------------------------------------------------------------
+Maximillian stated React is actually split across to libraries, react and react-dom, both of which are imported
+in package.json:
+
+"react": "^18.0.0",
+"react-dom": "^18.0.0",
+-------------------------------------------------------------------
+So create-react-app imports ReactDOM from 'react-dom/client' making that object available to our application.
+It also imports "index.css" and the App itself.  Note in normal Javascript we could not import CSS into a
+Javascript file the transformation code in create-react-app (when we run npm start) does the necessary
+transformations to make this work.
+
+We import the App, since this is a Javascript file we need to remove the suffix, all other files (like the css)
+need to retain their suffixes.
+
+The index.html file is a simple html file which has an empty <div> element in the <body> with id "root".
+
+<div id="root"></div>, the ReactDOM grabs this element in the code above and calls the "createRoot" method
+on it.  Then in the last line of code the root constant calls the render method on App.
+
+Note the root div is nothing more than a place holder into which we place our high level React component called
+App.  If we look at App, we see it is not normal Javascript.  It is a React component but it has normal Javascript
+function syntax.  The difference is that it returns somethig that looks like HTML, in fact this HTML like syntax
+is called JSX, which we will learn about shortly.
+--------------------------------------------------------------------------------------------------------------
+Here is our App component:
+function App() {
+  return (
+    <div>
+      <h2>Let's get started!</h2>
+    </div>
+  );
+}
+
+export default App;
+--------------------------------------------
+Again as Maximillian noted transformations happen when the application is run which turn the above code into
+browser friendly code.  If we run the application we can use the Chrome Developer Tools and go to sources and
+in the sources tab we will see a static/js folder in that folder we see a number of files.  One of those files
+will contain an App function which looks substantially different that our App component.  This is because that
+different App function is taking our easy to read App component and transforming it into something the browser
+can understand.
+
+this is important because React enables the developer to write code which is easy to understand and then the
+library itself assumes the resposibility of transforming the code into something the browser can understand.
+--------------------------------------------------------------------------------------------------------------
+How React works:
+React takes a "Declarative Approach" to application development, specifically:
+
+1.  React allows one to create re-usable and reactive components consisting of HTML, Javascript, and CSS
+2.  One defines the target state and then React figures out the actual Javascript DOM instructions
+
+Note compared to React using straight Javascript, HTML, CSS is called an "Imperative" approach, because you
+would have to tell Javascript what to do:
+
+1.  Create a paragraph element.
+2.  Insert text into the newly created paragraph element.
+3.  Insert the paragraph element somewhere in the DOM.
+
+React is declarative, what one does is define the end state(s) and then the React library figures out what
+DOM instructions to use to bring the desired state to the screen.
+--------------------------------------------------------------------------------------------------------------
+A component in React is nothing more than a function.  Before the advent of hooks and functional components,
+components in React where classes.  Note about the naming conventions for components, for custom components
+always use PascalCase which is like camelCase but the first work is capitalized.  React looks for components
+which are PascalCase and identifies them as custom components.  When components in JSX begin with lower case,
+React identifies them as standard HTML elements (div, p, h2, etc)
+
