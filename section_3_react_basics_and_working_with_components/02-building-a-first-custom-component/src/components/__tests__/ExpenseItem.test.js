@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import ExpenseItem from "../ExpenseItem";
+import ExpenseItem from "../Expenses/ExpenseItem";
 
 describe("Test ExpenseItem component", () => {
   let data;

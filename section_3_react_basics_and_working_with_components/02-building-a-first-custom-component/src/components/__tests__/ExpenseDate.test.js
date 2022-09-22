@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import ExpenseDate from '../ExpenseDate';
+import ExpenseDate from '../Expenses/ExpenseDate';
 
 describe('Test ExpenseDate Component', () => {
   test('should render year, month, and Day', () => {
