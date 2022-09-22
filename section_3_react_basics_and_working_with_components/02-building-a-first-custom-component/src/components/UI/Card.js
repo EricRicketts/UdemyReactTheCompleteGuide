@@ -1,6 +1,6 @@
 import "./Card.css";
 
-function Card(props) {
+const Card = props => {
   // white space is needed for concatenating classes together
   const classes = "card " + props.className;
   return (
