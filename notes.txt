@@ -143,6 +143,41 @@ The best place to put the call is near the top of the component before the retur
 naming covention for state variables: variable name describes is role, then this variable name is prefixed by "set"
 const [title, setTitle] = useState(props.title);
 
+import "./ExpenseItem.css";
+import ExpenseDate from "./ExpenseDate";
+import Card from "../UI/Card";
+import React, { useState } from "react";
 
+const ExpenseItem = props => {
+  const [title, setTitle] = useState(props.title);
+  const amount = '$' + props.amount;
+  const clickHandler = () => {
+    const titles = ["Foo", "Bar", "Fizz", "Buzz"];
+    const index = Math.floor(Math.random() * titles.length)
+    setTitle(titles[index]);
+    console.log("title is now: " + title);
+  }
+
+  return (
+    <Card className="expense-item">
+      <ExpenseDate date={props.date} />
+      <div className="expense-item__description">
+        <h2>{title}</h2>
+        <div className="expense-item__price">{amount}</div>
+      </div>
+      <button onClick={clickHandler}>Change Title</button>
+    </Card>
+  );
+}
+
+export default ExpenseItem;
+
+A very important concept to note if we look at what is rendered versus what is logged to the console, when we
+select the "Change Title" button, the console logging seems to lag the render.  This is because when setTitle
+is used React schedules the state change with the component rerender as the state changes forces a component
+rerender.  So when "Change Title" is selected React updates the state variable "title" and rerenders the component
+to display this change.  However, setTitle(titles[index]) changes title JUST FOR THE RERENDER of the component,
+the change to the state variable title will not be reflected to the console UNTIL THE NEXT RENDER.  So from the
+point of view of the clickHandler the title varible change to the console lags the rerender by one state change.
 --------------------------------------------------------------------------------------------------------------
 
