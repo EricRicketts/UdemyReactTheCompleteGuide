@@ -137,6 +137,12 @@ if the page was reloaded, what would take place is a REPEAT OF THE INITIAL RENDE
 props.title and then remain at that state with respect to rendering as no additional renderings will take place without
 a state update.
 
+Hook Rule: a hook like useState must be called in the component but not inside nested functions or inside the return.
+The best place to put the call is near the top of the component before the return.
+
+naming covention for state variables: variable name describes is role, then this variable name is prefixed by "set"
+const [title, setTitle] = useState(props.title);
+
 
 --------------------------------------------------------------------------------------------------------------
 

@@ -4,14 +4,12 @@ import Card from "../UI/Card";
 import React, { useState } from "react";
 
 const ExpenseItem = props => {
-  let title = props.title;
+  const [title, setTitle] = useState(props.title);
   const amount = '$' + props.amount;
   const clickHandler = () => {
     const titles = ["Foo", "Bar", "Fizz", "Buzz"];
-    console.log("Clicked!!!");
-    console.log("title was: " + title);
     const index = Math.floor(Math.random() * titles.length)
-    title = titles[index];
+    setTitle(titles[index]);
     console.log("title is now: " + title);
   }
 
