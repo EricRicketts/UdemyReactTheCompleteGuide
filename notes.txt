@@ -179,5 +179,38 @@ rerender.  So when "Change Title" is selected React updates the state variable "
 to display this change.  However, setTitle(titles[index]) changes title JUST FOR THE RERENDER of the component,
 the change to the state variable title will not be reflected to the console UNTIL THE NEXT RENDER.  So from the
 point of view of the clickHandler the title varible change to the console lags the rerender by one state change.
+
+A really key point to understand here is that useState registers state variables on a PER COMPONENT INSTANCE.
+So even though a developer might define one component, as we have done in this case with ExpenseItem, if there
+are four instances of ExpenseItem then there are four different state variables registered for each instance of
+ExpenseItem.
+
+STATE IS SEPARATE BASED ON A PER COMPONENT INSTANCE
+
+Maximillian gives a discussion of how state works in React which is worth recording.  I think this is one of the
+key concepts to understand if one wants to write more complicated UI's based on React.  We have the following code
+in ExpenseItem:
+
+if we do somthing like this in the clickHandler, title = setTitle(titles[index]) we will get an error.  So the question
+to ask is, "How does React update the state variable title when it is declared as a constant?".  One must understand
+how React works with respect to its different stages and how state works in each of those stages.  React has an initial
+rendering, subsequent renderings, and then component retirement.  React keeps track of the renderings, during the initial
+render const [title, setTitle] = useState(props.title) title is assigned props.title or whatever argument is provided to
+useState.  IN SUBSEQUENT renderings (which React keeps track of) title is initialized with the return value from setTitle,
+which in this case is a randomn selection from the titles array.  Note in each time title is REINITIALIZED, NOT
+REASSIGNED.
+
+const ExpenseItem = props => {
+  const [title, setTitle] = useState(props.title);
+  const amount = '$' + props.amount;
+  const clickHandler = () => {
+    const titles = ["Foo", "Bar", "Fizz", "Buzz"];
+    const index = Math.floor(Math.random() * titles.length)
+    setTitle(titles[index]);
+    console.log("title is now: " + title);
+  }
+  return (...)
+}
+
 --------------------------------------------------------------------------------------------------------------
 
