@@ -34,5 +34,13 @@ describe("Test New Expense", () => {
       await userEvent.type(dateInput, newDate)
       await waitFor(() => expect(dateInput).toHaveValue(newDate));
     }); 
+    test("should be able to enter a new amount", async () => {
+      render(<NewExpense />); 
+      const amountInput = await screen.findByLabelText("Amount"); 
+      const newAmountEntry = "66.05";
+      const newAmount = 66.05;
+      await userEvent.type(amountInput, newAmountEntry)
+      await waitFor(() => expect(amountInput).toHaveValue(newAmount));
+    }); 
   }); 
 });
