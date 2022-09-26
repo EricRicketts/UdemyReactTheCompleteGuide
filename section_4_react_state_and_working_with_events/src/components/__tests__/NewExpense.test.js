@@ -27,5 +27,12 @@ describe("Test New Expense", () => {
       await userEvent.type(titleInput, newTitle);
       await waitFor(() => expect(titleInput).toHaveValue(newTitle));
     }); 
+    test("should be able to enter a new date", async () => {
+      render(<NewExpense />); 
+      const dateInput = await screen.findByLabelText("Date"); 
+      const newDate = "2019-03-02";
+      await userEvent.type(dateInput, newDate)
+      await waitFor(() => expect(dateInput).toHaveValue(newDate));
+    }); 
   }); 
 });
