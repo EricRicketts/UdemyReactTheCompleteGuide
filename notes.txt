@@ -232,5 +232,16 @@ actual update would be different for the enteredAmount and enteredDate, i.e.,
 setUserInput((prevState) => {
   return { ...prevState, enteredAmount: event.target.value }
 });
+
+<label id="form-title">Title</label>
+<input
+  aria-labelledby="form-title"
+  type="text"
+  value={enteredTitle}
+  onChange={titleChangeHandler}
+/>
+
+In the above code we have two-way binding, as we not only listen for a state update, i.e., onChange, but we also
+set the value of the input element to the state variable enteredTitle.
 --------------------------------------------------------------------------------------------------------------
 

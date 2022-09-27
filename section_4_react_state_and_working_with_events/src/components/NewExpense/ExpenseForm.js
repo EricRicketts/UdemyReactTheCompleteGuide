@@ -24,6 +24,9 @@ const ExpenseForm = () => {
       date: new Date(enteredDate),
     };
     console.log(expenseData);
+    setEnteredAmount('');
+    setEnteredDate('');
+    setEnteredTitle('');
   }
 
   return (
@@ -34,6 +37,7 @@ const ExpenseForm = () => {
           <input
             aria-labelledby="form-title"
             type="text"
+            value={enteredTitle}
             onChange={titleChangeHandler}
           />
         </div>
@@ -42,6 +46,7 @@ const ExpenseForm = () => {
           <input
             aria-labelledby="form-amount"
             type="number"
+            value={enteredAmount}
             min="0.01"
             step="0.01"
             onChange={amountChangeHandler}
@@ -52,6 +57,7 @@ const ExpenseForm = () => {
           <input
             aria-labelledby="form-date"
             type="date"
+            value={enteredDate}
             min="2019-01-01"
             max="2022-12-31"
             onChange={dateChangeHandler}
