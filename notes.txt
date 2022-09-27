@@ -212,5 +212,25 @@ const ExpenseItem = props => {
   return (...)
 }
 
+As I do, I prefer to declare each state variable and its update function separately.  However, one can return an
+object which updates multiple state variables.  Note the code below SHOULD BE USED WHEN THE NEW STATE DEPENDS ON
+THE PREVIOUS STATE:
+
+const [userInput, setUserInput] = useState({
+  enteredTitle: '',
+  enteredAmount: '',
+  enteredDate: ''
+});
+
+setUserInput((prevState) => {
+  return { ...prevState, enteredTitle: event.target.value }
+});
+
+We would have to repeat the above code for each state variable that needs to be updated, of course the 
+actual update would be different for the enteredAmount and enteredDate, i.e., 
+
+setUserInput((prevState) => {
+  return { ...prevState, enteredAmount: event.target.value }
+});
 --------------------------------------------------------------------------------------------------------------
 
