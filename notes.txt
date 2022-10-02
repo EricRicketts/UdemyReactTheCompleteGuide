@@ -244,4 +244,41 @@ setUserInput((prevState) => {
 In the above code we have two-way binding, as we not only listen for a state update, i.e., onChange, but we also
 set the value of the input element to the state variable enteredTitle.
 --------------------------------------------------------------------------------------------------------------
+VERY IMPORTANT CONCEPT => LIFTING STATE UP
+
+This is one of the most important concepts when developing React applications.  One needs to know how to pass
+data from parent to child (easy one uses props) and from child to parent (not as easy, one uses function pointers).
+
+Before we launch into the details of the code Max has developed so far we need to understand the current high level
+architecture of the application as it now is and then how React requires that data be passed from parent to child
+and from child to parent.
+
+In the current architecture of the application we have the App component at the top and then underneath we have
+a presentation layer and a layer which acquires new data:
+
+App.js
+|
+|
+|------ NewExpenses.js
+|       |
+|       |
+|       |------ ExpenseForm.js
+|
+|
+|------ Expenses.js
+|       |
+|       |
+|       |------ ExpenseItem.js
+|               |
+|               |
+|               |------ ExpenseDate.js
+
+
+So NewExpenses.js calls ExpenseForm.js which does the actual work to acquire the new data entered by the user.
+Expeneses is the presentation layer it takes the data from App.js (the data array) and passes it down to ExpenseItem.js
+
+--------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------
 
