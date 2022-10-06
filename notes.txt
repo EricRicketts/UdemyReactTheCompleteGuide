@@ -358,6 +358,10 @@ Now finally, lets look at the appropriate code for <ExpenseForm />:
   When we get to <NewExpense /> in the saveExpenseDataHandler function it calls the prop handed down to it
   from its parent, App.js => props.onAddExpense(expenseData) the expenseData is the data from <ExpenseForm />
   with the addition of an id property.
+
+  whenever we use two-way binding, we are creating a controlled component.  In two-way binding, a value is
+  passed from the child to the parent component and then the child recieves the same value from the parent
+  component.
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
