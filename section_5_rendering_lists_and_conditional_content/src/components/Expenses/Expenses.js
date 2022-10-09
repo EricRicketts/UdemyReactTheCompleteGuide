@@ -22,7 +22,7 @@ const Expenses = (props) => {
           <ExpenseItem
             title={expense.title}
             date={expense.date}
-            amont={expense.amount}
+            amount={expense.amount}
           />
         ))}
       </Card>
