@@ -364,6 +364,16 @@ Now finally, lets look at the appropriate code for <ExpenseForm />:
   component.
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
+SECTION 5 RENDERING LISTS AND CONDITIONAL CONTENT
+
+Keys are important because what React does without keys is to first add an element to the back of a list and then
+React will go through the collection of elements and reassign them based on how they are situated in the
+collection.  If the collection is very large then this can significantly extend the render time.
+
+With keys, not only are the number of items in the collection known but React knoww their position in the collection.
+Normally, in working with Databases we can get unique id's from the database itself.
+
+
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
 
