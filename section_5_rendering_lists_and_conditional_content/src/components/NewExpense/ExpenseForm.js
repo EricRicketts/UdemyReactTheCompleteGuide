@@ -5,6 +5,22 @@ const ExpenseForm = (props) => {
   const [enteredTitle, setEnteredTitle] = useState("");
   const [enteredAmount, setEnteredAmount] = useState("");
   const [enteredDate, setEnteredDate] = useState("");
+  const [addNewExpense, setAddNewExpense] = useState(false);
+
+  const cancelExpense = () => {
+    toggleAddNewExpenseToFalse();
+    setEnteredAmount("");
+    setEnteredDate("");
+    setEnteredTitle("");
+  };
+
+  const toggleAddNewExpenseToTrue = () => {
+    setAddNewExpense((previous) => true);
+  };
+
+  const toggleAddNewExpenseToFalse = () => {
+    setAddNewExpense((previous) => false);
+  };
 
   const titleChangeHandler = (event) => {
     setEnteredTitle(event.target.value);
@@ -17,16 +33,28 @@ const ExpenseForm = (props) => {
   };
 
   const submitHandler = (event) => {
-    event.preventDefault();    
+    event.preventDefault();
     const expenseData = {
       title: enteredTitle,
       amount: enteredAmount,
       date: new Date(enteredDate),
     };
     props.onSaveExpenseData(expenseData);
-    setEnteredAmount('');
-    setEnteredDate('');
-    setEnteredTitle('');
+    toggleAddNewExpenseToFalse();
+    setEnteredAmount("");
+    setEnteredDate("");
+    setEnteredTitle("");
+  };
+
+  if (!addNewExpense) {
+    return (
+      <button
+        className="new-expense button"
+        onClick={toggleAddNewExpenseToTrue}
+      >
+        Add New Expense
+      </button>
+    );
   }
 
   return (
@@ -65,6 +93,9 @@ const ExpenseForm = (props) => {
         </div>
       </div>
       <div className="new-expenses__actions">
+        <button type="button" onClick={cancelExpense}>
+          Cancel
+        </button>
         <button type="submit">Add Expense</button>
       </div>
     </form>
