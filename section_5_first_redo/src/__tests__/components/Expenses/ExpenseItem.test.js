@@ -9,7 +9,7 @@ describe("Test The ExpenseItem Component", () => {
     expense = {
       id: "#4C9",
       title: "Test Item",
-      amount: 45.32,
+      amount: 54.32,
       date: new Date("12/10/2019"),
     };
   });
@@ -44,6 +44,29 @@ describe("Test The ExpenseItem Component", () => {
         />
       );
       expect(screen.getByText("2019")).toBeInTheDocument();
+    });
+  });
+  describe("Test The Amount And Title Render", () => {
+    test("should render the title", () => {
+      render(
+        <ExpenseItem
+          title={expense.title}
+          amount={expense.amount}
+          date={expense.date}
+        />
+      );
+      expect(screen.getByText(/Test Item/i)).toBeInTheDocument();
+    });
+    test("should render the price", () => {
+      render(
+        <ExpenseItem
+          title={expense.title}
+          amount={expense.amount}
+          date={expense.date}
+        />
+      );
+      screen.logTestingPlaygroundURL();
+      expect(screen.getByText(/\$54\.32/i)).toBeInTheDocument();
     });
   });
 });
